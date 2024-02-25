@@ -23,8 +23,9 @@
         
     <Grid x:Name="RootMainGrid">
             <ui:NavigationView x:Name="NavigationView"
-                           FrameMargin="0"
-                           EnableDebugMessages="True"
+                               FrameMargin="0"
+                               BreadcrumbBar="{Binding ElementName=BreadcrumbBar}"
+                               EnableDebugMessages="True"
                            IsBackButtonVisible="Collapsed"
                            IsPaneToggleVisible="False"
                            PaneClosed="NavigationView_OnPaneClosed"
@@ -34,9 +35,15 @@
                            TransitionDuration="600"
                            MenuItemsSource="{Binding ViewModel.MenuItems, Mode=OneWay}"
                           FooterMenuItemsSource="{Binding ViewModel.FooterItems, Mode=OneWay}"
-                           Transition="FadeInWithSlide" >
+                           Transition="FadeInWithSlide" > 
             </ui:NavigationView>
         </Grid>
+        <ui:BreadcrumbBar x:Name="BreadcrumbBar"
+                          Margin="100,20,50,0"
+                          BorderBrush="Transparent"
+                          Background="Transparent"
+                          VerticalAlignment="Top" />
+
         <ui:SnackbarPresenter x:Name="RootSnackbar"
                               MaxWidth="600" />
         <ui:SymbolIcon Symbol="GridDots20"
