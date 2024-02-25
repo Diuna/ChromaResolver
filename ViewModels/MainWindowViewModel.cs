@@ -24,7 +24,8 @@ namespace ChromaResolver.ViewModels
         private void InitializeMenu()
         {
             MenuItems.Add(new NavigationViewItem("Home", SymbolRegular.Home20, typeof(HomeView)));
-            MenuItems.Add(new NavigationViewItem("Content", SymbolRegular.ContentSettings20, typeof(ContentView)));
+            MenuItems.Add(new NavigationViewItem("ECM", SymbolRegular.Cube20, typeof(ECMView)));
+            MenuItems.Add(new NavigationViewItem("LAB", SymbolRegular.Beaker20, typeof(LABView)));
             FooterItems.Add(new NavigationViewItemSeparator());
             FooterItems.Add(new NavigationViewItem("Settings", SymbolRegular.Settings20, typeof(SettingsView)));
         }

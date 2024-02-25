@@ -5,14 +5,14 @@ namespace ChromaResolver.Views
     /// <summary>
     /// Interaction logic for Dashboard.xaml
     /// </summary>
-    public partial class ContentView
+    public partial class ECMView
     {
-        public ContentViewModel ViewModel
+        public ECMViewModel ViewModel
         {
             get;
         }
 
-        public ContentView(ContentViewModel viewModel)
+        public ECMView(ECMViewModel viewModel)
         {
             ViewModel = viewModel;
             InitializeComponent();

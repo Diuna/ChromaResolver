@@ -28,7 +28,7 @@
                            IsBackButtonVisible="Collapsed"
                            IsPaneToggleVisible="False"
                            PaneClosed="NavigationView_OnPaneClosed"
-                           PaneDisplayMode="Left"
+                           PaneDisplayMode="LeftFluent"
                            PaneOpened="NavigationView_OnPaneOpened"
                            SelectionChanged="OnNavigationSelectionChanged"
                            TransitionDuration="600"

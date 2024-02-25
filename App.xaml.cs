@@ -26,8 +26,10 @@ namespace ChromaResolver
             services.AddScoped<SettingsView>();
             services.AddScoped<SettingsViewModel>();
 
-            services.AddScoped<ContentView>();
-            services.AddScoped<ContentViewModel>();
+            services.AddScoped<ECMView>();
+            services.AddScoped<ECMViewModel>();
+            services.AddScoped<LABView>();
+            services.AddScoped<LABViewModel>();
 
             services.AddScoped<HomeView>();
             services.AddScoped<HomeViewModel>();
