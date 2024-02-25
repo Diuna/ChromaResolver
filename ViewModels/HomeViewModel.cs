@@ -1,10 +1,30 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using ChromaResolver.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Wpf.Ui;
 
 namespace ChromaResolver.ViewModels
 {
     public partial class HomeViewModel : ObservableObject
     {
-        [ObservableProperty]
-        public string welcomeString = "HELLO FROM HOME!";
+        private readonly INavigationService _navigationService;
+
+        public HomeViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
+
+        [RelayCommand]
+        private void Navigate(string navigateTag)
+        {
+            if (navigateTag.Equals("ECM"))
+            {
+                _navigationService.Navigate(typeof(ECMView));
+            }
+            if (navigateTag.Equals("LAB"))
+            {
+                _navigationService.Navigate(typeof(LABView));
+            }
+        }
     }
 }

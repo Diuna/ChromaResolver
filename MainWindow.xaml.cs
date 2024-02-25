@@ -13,11 +13,11 @@ namespace ChromaResolver
         public MainWindowViewModel ViewModel { get; set; }
 
         public MainWindow(
-        MainWindowViewModel viewModel,
-        INavigationService navigationService,
-        IServiceProvider serviceProvider,
-        ISnackbarService snackbarService,
-        IThemeService themeService)
+            MainWindowViewModel viewModel,
+            INavigationService navigationService,
+            IServiceProvider serviceProvider,
+            ISnackbarService snackbarService,
+            IThemeService themeService)
         {
             ViewModel = viewModel;
             DataContext = this;

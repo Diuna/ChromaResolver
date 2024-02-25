@@ -9,10 +9,23 @@
               Foreground="{DynamicResource TextFillColorPrimaryBrush}"
               d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
             Title="Dashboard"
-            mc:Ignorable="d"  >
+            mc:Ignorable="d"
+          d:Width="1920"
+          d:Height="1080">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <ui:TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
-                   Text="{Binding WelcomeString}" FontSize="32"/>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ui:Button Margin="100" Appearance="Primary" CornerRadius="60" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding NavigateCommand}" CommandParameter="ECM" >
+            <TextBlock Text="ECM" FontSize="72"/>
+        </ui:Button>
+
+        <ui:Button Grid.Column="1" Appearance="Light" Margin="100" CornerRadius="60" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding NavigateCommand}" CommandParameter="LAB"  >
+            <TextBlock Text="LAB" FontSize="72"/>
+        </ui:Button>
     </Grid>
 
 </Page>
