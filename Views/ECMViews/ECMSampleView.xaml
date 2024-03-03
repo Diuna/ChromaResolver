@@ -64,8 +64,11 @@
             <Border Grid.Column="1"
                     Margin="20,-40,10,5"
                     CornerRadius="{StaticResource Global_CornerRadius}"
-                    BorderThickness="2"
-                    BorderBrush="Gray">
+                    BorderThickness="2">
+                <Border.BorderBrush>
+                    <SolidColorBrush Opacity="0.4"
+                                     Color="{DynamicResource SystemAccentColorPrimary}" />
+                </Border.BorderBrush>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -97,9 +100,9 @@
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   FontSize="{StaticResource Global_NormalFontSize}" />
-                    
-                    
-                    
+
+
+
                     <ui:TextBlock Text="{Binding Sample.FePercent}"
                                   Grid.Column="0"
                                   Grid.Row="1"
@@ -133,19 +136,42 @@
         </Grid>
         <Border Grid.Row="1"
                 Margin="10"
-                CornerRadius="{StaticResource Global_CornerRadius}"
-                BorderThickness="2"
-                BorderBrush="Gray">
+                BorderThickness="1"
+                CornerRadius="{StaticResource Global_CornerRadius}">
+            <Border.BorderBrush>
+                <SolidColorBrush Opacity="0.5"
+                                 Color="{DynamicResource SystemAccentColorPrimary}" />
+            </Border.BorderBrush>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                <Grid Grid.Column="0" 
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+                    <Grid.Background>
+                        <SolidColorBrush Opacity="0.1" Color="{DynamicResource SystemAccentColorPrimary}" />
+                    </Grid.Background>
+                </Grid>
+                <Grid Grid.Column="1"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+                    <Grid.Background>
+                        <SolidColorBrush Opacity="0.15"
+                                         Color="{DynamicResource SystemAccentColorPrimary}" />
+                    </Grid.Background>
+                </Grid>
+
+                <Grid Grid.Column="2"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+                    <Grid.Background>
+                        <SolidColorBrush Opacity="0.2"
+                                         Color="{DynamicResource SystemAccentColorPrimary}" />
+                    </Grid.Background>
+                </Grid>
             </Grid>
         </Border>
         <ui:Button Grid.Row="2"

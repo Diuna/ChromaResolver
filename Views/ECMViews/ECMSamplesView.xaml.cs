@@ -1,4 +1,6 @@
-﻿using ChromaResolver.ViewModels.ECMViewModels;
+﻿using ChromaResolver.Models.ECM;
+using ChromaResolver.ViewModels.ECMViewModels;
+using Wpf.Ui.Controls;
 
 namespace ChromaResolver.Views.ECMViews
 {
@@ -18,7 +20,13 @@ namespace ChromaResolver.Views.ECMViews
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            ViewModel.EditCommand.Execute(null);
+            if (sender is Button button)
+            {
+                if (button.DataContext is Sample sample)
+                {
+                    ViewModel.Edit(sample);
+                }
+            }
         }
     }
 }

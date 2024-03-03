@@ -57,7 +57,16 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <Border Background="Transparent" BorderBrush="SeaGreen" BorderThickness="2" Margin="10,0" Height="25" Width="25" CornerRadius="5">
+                        <Border Background="Transparent"
+                                BorderThickness="2"
+                                Margin="10,0"
+                                Height="25"
+                                Width="25"
+                                CornerRadius="5">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Opacity="0.5"
+                                                 Color="{DynamicResource SystemAccentColorPrimary}" />
+                            </Border.BorderBrush>
                             <ui:TextBlock Text="{Binding Creator}" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
                         </Border>
                         <ui:TextBlock Grid.Column="1"

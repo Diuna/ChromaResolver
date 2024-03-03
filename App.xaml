@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
             <sys:Double x:Key="Global_NormalFontSize">32</sys:Double>
             <sys:Double x:Key="Global_SmallFontSize">24</sys:Double>
-            <CornerRadius x:Key="Global_CornerRadius">10</CornerRadius> 
+            <CornerRadius x:Key="Global_CornerRadius">20</CornerRadius> 
         </ResourceDictionary>
     </Application.Resources>
 </Application>
