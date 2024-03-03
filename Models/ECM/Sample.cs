@@ -5,11 +5,15 @@ namespace ChromaResolver.Models.ECM
 {
     public partial class Sample : ObservableObject
     {
+
         [ObservableProperty]
         public string name;
 
         [ObservableProperty]
         public int id;
+
+        [ObservableProperty]
+        public int daysAgo;
 
         [ObservableProperty]
         public DateTime date;
@@ -23,6 +27,18 @@ namespace ChromaResolver.Models.ECM
         [ObservableProperty]
         public double aboveHeight;
 
+        [ObservableProperty]
+        private double fePercent;
+
+        [ObservableProperty]
+        private double crPercent;
+
+        [ObservableProperty]
+        private double niPercent;
+
+        [ObservableProperty]
+        private double cuPercent;
+
         public Sample(string name, int id, DateTime date, string creator, int ah, double aboveHeight)
         {
             Name = name;
@@ -31,6 +47,12 @@ namespace ChromaResolver.Models.ECM
             Creator = creator;
             Ah = ah;
             AboveHeight = aboveHeight;
+            DaysAgo = DateTime.Now.Subtract(date).Days;
+        }
+
+        public Sample()
+        {
+
         }
     }
 }

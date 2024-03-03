@@ -1,10 +1,7 @@
 ﻿using ChromaResolver.ViewModels.ECMViewModels;
 
-namespace ChromaResolver.Views
+namespace ChromaResolver.Views.ECMViews
 {
-    /// <summary>
-    /// Interaction logic for Dashboard.xaml
-    /// </summary>
     public partial class ECMSamplesView
     {
         public ECMSamplesViewModel ViewModel
@@ -17,6 +14,11 @@ namespace ChromaResolver.Views
             ViewModel = viewModel;
             InitializeComponent();
             DataContext = ViewModel;
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ViewModel.EditCommand.Execute(null);
         }
     }
 }

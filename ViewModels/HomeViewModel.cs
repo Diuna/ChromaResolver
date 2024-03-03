@@ -1,4 +1,5 @@
 ﻿using ChromaResolver.Views;
+using ChromaResolver.Views.ECMViews;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Wpf.Ui;
@@ -19,7 +20,7 @@ namespace ChromaResolver.ViewModels
         {
             if (navigateTag.Equals("ECM"))
             {
-                _navigationService.Navigate(typeof(ECMView));
+                _navigationService.Navigate(typeof(ECMSamplesView));
             }
             if (navigateTag.Equals("LAB"))
             {

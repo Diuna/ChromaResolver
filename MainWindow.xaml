@@ -39,9 +39,11 @@
             </ui:NavigationView>
         </Grid>
         <ui:BreadcrumbBar x:Name="BreadcrumbBar"
-                          Margin="100,20,50,0"
+                          Width="400"
+                          Margin="90,10,50,0"
                           BorderBrush="Transparent"
                           Background="Transparent"
+                          HorizontalAlignment="Left"
                           VerticalAlignment="Top" />
 
         <ui:SnackbarPresenter x:Name="RootSnackbar"

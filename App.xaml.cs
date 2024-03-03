@@ -3,6 +3,7 @@ using ChromaResolver.Services;
 using ChromaResolver.ViewModels;
 using ChromaResolver.ViewModels.ECMViewModels;
 using ChromaResolver.Views;
+using ChromaResolver.Views.ECMViews;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
@@ -27,10 +28,10 @@ namespace ChromaResolver
             services.AddScoped<SettingsView>();
             services.AddScoped<SettingsViewModel>();
 
-            services.AddScoped<ECMView>();
-            services.AddScoped<ECMViewModel>();
             services.AddScoped<ECMSamplesView>();
             services.AddScoped<ECMSamplesViewModel>();
+            services.AddScoped<ECMSampleView>();
+            services.AddScoped<ECMSampleViewModel>();
             services.AddScoped<LABView>();
             services.AddScoped<LABViewModel>();
 

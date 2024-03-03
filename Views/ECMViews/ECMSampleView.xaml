@@ -1,0 +1,159 @@
+﻿<Page x:Class="ChromaResolver.Views.ECMViews.ECMSampleView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:viewmodels="clr-namespace:ChromaResolver.ViewModels.ECMViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:ECMSampleViewModel}"
+      Background="{DynamicResource ApplicationBackgroundBrush}"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+      Title="Sample"
+      mc:Ignorable="d"
+      ui:NavigationView.HeaderContent="Sample"
+      d:DesignHeight="450"
+      d:DesignWidth="800">
+
+    <Grid Margin="0,50,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid Margin="20,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <ui:TextBlock Text="{Binding Sample.Name}"
+                              FontSize="42" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"
+                                Orientation="Horizontal">
+                        <ui:TextBlock Text="ID: "
+                                      FontSize="{StaticResource Global_SmallFontSize}" />
+                        <ui:TextBlock Text="{Binding Sample.Id}"
+                                      FontSize="{StaticResource Global_SmallFontSize}" />
+                    </StackPanel>
+                    <ui:TextBlock Grid.Column="1"
+                                  Margin="20,0"
+                                  Text="{Binding Sample.Date, StringFormat='{}{0:dd.MM.yyyy}'}"
+                                  FontSize="{StaticResource Global_SmallFontSize}" />
+
+                    <StackPanel Grid.Column="2"
+                                Orientation="Horizontal">
+                        <ui:TextBlock Text="("
+                                      FontSize="{StaticResource Global_SmallFontSize}" />
+                        <ui:TextBlock Text="{Binding Sample.DaysAgo}"
+                                      FontSize="{StaticResource Global_SmallFontSize}" />
+                        <ui:TextBlock Text=" dni temu)"
+                                      FontSize="{StaticResource Global_SmallFontSize}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Border Grid.Column="1"
+                    Margin="20,-40,10,5"
+                    CornerRadius="{StaticResource Global_CornerRadius}"
+                    BorderThickness="2"
+                    BorderBrush="Gray">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ui:TextBlock Text="Fe"
+                                  Grid.Column="0"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontSize="{StaticResource Global_NormalFontSize}" />
+                    <ui:TextBlock Text="Cr"
+                                  Grid.Column="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontSize="{StaticResource Global_NormalFontSize}" />
+                    <ui:TextBlock Text="Ni"
+                                  Grid.Column="2"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontSize="{StaticResource Global_NormalFontSize}" />
+                    <ui:TextBlock Text="Cu"
+                                  Grid.Column="3"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontSize="{StaticResource Global_NormalFontSize}" />
+                    
+                    
+                    
+                    <ui:TextBlock Text="{Binding Sample.FePercent}"
+                                  Grid.Column="0"
+                                  Grid.Row="1"
+                                  Opacity="0.8"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontSize="{StaticResource Global_NormalFontSize}" />
+                    <ui:TextBlock Text="{Binding Sample.CrPercent}"
+                                  Grid.Column="1"
+                                  Grid.Row="1"
+                                  Opacity="0.8"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontSize="{StaticResource Global_NormalFontSize}" />
+                    <ui:TextBlock Text="{Binding Sample.NiPercent}"
+                                  Grid.Column="2"
+                                  Grid.Row="1"
+                                  Opacity="0.8"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontSize="{StaticResource Global_NormalFontSize}" />
+                    <ui:TextBlock Text="{Binding Sample.CuPercent}"
+                                  Grid.Column="3"
+                                  Grid.Row="1"
+                                  Opacity="0.8"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontSize="{StaticResource Global_NormalFontSize}" />
+                </Grid>
+            </Border>
+        </Grid>
+        <Border Grid.Row="1"
+                Margin="10"
+                CornerRadius="{StaticResource Global_CornerRadius}"
+                BorderThickness="2"
+                BorderBrush="Gray">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+            </Grid>
+        </Border>
+        <ui:Button Grid.Row="2"
+                   HorizontalAlignment="Stretch"
+                   Icon="{ui:SymbolIcon Save20}"
+                   Content="Save"
+                   Appearance="Primary"
+                   Margin="10" />
+    </Grid>
+
+</Page>
