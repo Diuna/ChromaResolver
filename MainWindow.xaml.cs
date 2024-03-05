@@ -15,6 +15,7 @@ namespace ChromaResolver
         public MainWindow(
             MainWindowViewModel viewModel,
             INavigationService navigationService,
+            IContentDialogService contentDialogService,
             IServiceProvider serviceProvider,
             ISnackbarService snackbarService,
             IThemeService themeService)
@@ -28,6 +29,7 @@ namespace ChromaResolver
 
             snackbarService.SetSnackbarPresenter(RootSnackbar);
             navigationService.SetNavigationControl(NavigationView);
+            contentDialogService.SetContentPresenter(RootContentDialogPresenter);
             themeService.SetTheme(Wpf.Ui.Appearance.ApplicationTheme.Dark);
             themeService.SetSystemAccent();
 

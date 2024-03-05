@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="70" />
             </Grid.ColumnDefinitions>
             <ui:TextBlock Text="Creator"
                           VerticalAlignment="Center"
@@ -41,6 +41,9 @@
                           Text="AboveHeight" />
             <ui:TextBlock Grid.Column="5"
                           Text="Id" />
+            <ui:TextBlock Grid.Column="6"
+                          HorizontalAlignment="Center"
+                          Text="Edit" />
         </Grid>
         <ListView Grid.Row="1"
             ItemsSource="{Binding Samples, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -55,7 +58,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="70" />
                         </Grid.ColumnDefinitions>
                         <Border Background="Transparent"
                                 BorderThickness="2"
@@ -79,13 +82,15 @@
                                       Text="{Binding AboveHeight}" />
                         <ui:TextBlock Grid.Column="5"
                                       Text="{Binding Id}" />
-                        <ui:Button Grid.Column="6"  HorizontalAlignment="Right" MinWidth="30" Appearance="Primary" Icon="{ui:SymbolIcon Edit20}" VerticalAlignment="Stretch"  Click="Button_Click"/>
+                        <ui:Button Grid.Column="6"  HorizontalAlignment="Center" MinWidth="30" Appearance="Primary" Icon="{ui:SymbolIcon Edit20}" VerticalAlignment="Stretch"  Click="Button_Click"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
             
         </ListView>
-        <ui:Button Grid.Row="2" HorizontalAlignment="Stretch" Icon="{ui:SymbolIcon Add20}" Content="Add sample" Appearance="Primary" Margin="10" />
+        <ui:Button Grid.Row="2" HorizontalAlignment="Stretch" Icon="{ui:SymbolIcon Add20}" 
+                   Content="Add sample" Appearance="Primary" Margin="10"
+                   Command="{Binding AddSampleCommand}"/>
     </Grid>
 
 </Page>

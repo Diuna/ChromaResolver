@@ -1,0 +1,18 @@
+﻿<ui:ContentDialog x:Class="ChromaResolver.Views.NewSampleContentDialog"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                  xmlns:local="ChromaResolver.Views"
+                  ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+                  ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                  CloseButtonText="Close" 
+                  DialogMaxWidth="750"
+                  Title="NewSampleContentDialog">
+ 
+    <Grid >
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="TEST"
+                   FontSize="42" />
+    </Grid>
+</ui:ContentDialog>
