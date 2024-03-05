@@ -29,6 +29,8 @@ namespace ChromaResolver
             services.AddScoped<SettingsView>();
             services.AddScoped<SettingsViewModel>();
 
+            services.AddScoped<NewSampleContentDialog>();
+            services.AddScoped<NewSampleContentDialogViewModel>();
             services.AddScoped<ECMSamplesView>();
             services.AddScoped<ECMSamplesViewModel>();
             services.AddScoped<ECMSampleView>();

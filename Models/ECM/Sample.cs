@@ -16,7 +16,7 @@ namespace ChromaResolver.Models.ECM
         public int daysAgo;
 
         [ObservableProperty]
-        public DateTime date;
+        public DateOnly date;
 
         [ObservableProperty]
         public string creator;
@@ -39,7 +39,7 @@ namespace ChromaResolver.Models.ECM
         [ObservableProperty]
         private double cuPercent;
 
-        public Sample(string name, int id, DateTime date, string creator, int ah, double aboveHeight)
+        public Sample(string name, int id, DateOnly date, string creator, int ah, double aboveHeight)
         {
             Name = name;
             Id = id;
@@ -47,7 +47,7 @@ namespace ChromaResolver.Models.ECM
             Creator = creator;
             Ah = ah;
             AboveHeight = aboveHeight;
-            DaysAgo = DateTime.Now.Subtract(date).Days;
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
         }
 
         public Sample()

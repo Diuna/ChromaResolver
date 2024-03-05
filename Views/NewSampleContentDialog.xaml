@@ -2,17 +2,87 @@
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-                  xmlns:local="ChromaResolver.Views"
+                  xmlns:local="clr-namespace:ChromaResolver.Views"
+                  xmlns:viewmodels="clr-namespace:ChromaResolver.ViewModels"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                   ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
                   ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-                  CloseButtonText="Close" 
-                  DialogMaxWidth="750"
-                  Title="NewSampleContentDialog">
- 
-    <Grid >
-        <TextBlock HorizontalAlignment="Center"
+                  CloseButtonText="Close"
+                  IsPrimaryButtonEnabled="True"
+                  PrimaryButtonText="Add"
+                  PrimaryButtonIcon="{ui:SymbolIcon Add20}"
+                  Title="Add new sample">
+
+
+    <ui:ContentDialog.Resources>
+        <ResourceDictionary>
+            <Style BasedOn="{StaticResource {x:Type ui:ContentDialog}}"
+                   TargetType="{x:Type local:NewSampleContentDialog}" />
+        </ResourceDictionary>
+    </ui:ContentDialog.Resources>
+
+    <Grid Width="500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   Text="TEST"
-                   FontSize="42" />
+                   Text="Name"
+                   FontWeight="Bold" />
+        <TextBlock Grid.Row="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Creator"
+                   FontWeight="Bold" />
+        <TextBlock Grid.Row="2"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Date"
+                   FontWeight="Bold" />
+        <TextBlock Grid.Row="3"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Ah*" />
+        <TextBlock Grid.Row="4"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Height*" />
+        <ui:TextBox Grid.Row="0"
+                    Grid.Column="1"
+                    Text="{Binding Name}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top" />
+        <ui:TextBox Grid.Row="1"
+                    Grid.Column="1"
+                    MaxLength="3"
+                    Text="{Binding Creator}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top" />
+        <DatePicker Grid.Row="2"
+                    Grid.Column="1"
+                    SelectedDate="{Binding Date}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top" />
+        <ui:TextBox Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{Binding Ah}"
+                    PreviewTextInput="TextBox_PreviewTextInput"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top" />
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 Text="{Binding Height}"
+                 PreviewTextInput="TextBox_PreviewTextInput"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Top" />
     </Grid>
 </ui:ContentDialog>
