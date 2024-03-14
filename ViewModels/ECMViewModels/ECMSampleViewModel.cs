@@ -36,6 +36,5 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         {
             _navigationService.Navigate(typeof(ECMSamplesView));
         }
-
     }
 }
