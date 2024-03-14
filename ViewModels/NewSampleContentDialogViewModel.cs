@@ -26,7 +26,7 @@ namespace ChromaResolver.ViewModels
         {
             DateTimeOffset dateTimeOffset;
             var str = value.Remove(value.Length - 3, 3);
-            if (DateTimeOffset.TryParseExact(str, "d/M/yyyy HH:mm:ss", null, System.Globalization.DateTimeStyles.AssumeLocal, out dateTimeOffset))
+            if (DateTimeOffset.TryParseExact(str, "M/d/yyyy HH:mm:ss", null, System.Globalization.DateTimeStyles.AssumeLocal, out dateTimeOffset))
             {
                 DateStruct = DateOnly.FromDateTime(dateTimeOffset.Date);
             }

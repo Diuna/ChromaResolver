@@ -57,7 +57,7 @@ namespace ChromaResolver.ViewModels.ECMViewModels
             {
                 Samples.Add(new Sample(
                     _newSampleContent.ViewModel.Name,
-                    Samples.Count + 1,
+                    Samples.Count,
                     _newSampleContent.ViewModel.DateStruct,
                     _newSampleContent.ViewModel.Creator,
                     (int)_newSampleContent.ViewModel.Ah,

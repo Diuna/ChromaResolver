@@ -47,7 +47,12 @@ namespace ChromaResolver.Models.ECM
             Creator = creator;
             Ah = ah;
             AboveHeight = aboveHeight;
-            DateOnly currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
+            var dateTime = date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
+            DaysAgo = (int)DateTime.UtcNow.Date.Subtract(dateTime).TotalDays;
+            if (DaysAgo < 0)
+            {
+                DaysAgo = 0;
+            }
         }
 
         public Sample()
