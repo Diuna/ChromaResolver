@@ -20,11 +20,22 @@ namespace ChromaResolver.Views
             ViewModel = viewModel;
             InitializeComponent();
             DataContext = ViewModel;
+            ViewModel.UpdateControl += UpdatePrimaryButtonEnabled;
+        }
+
+        private void UpdatePrimaryButtonEnabled(bool enabled)
+        {
+            IsPrimaryButtonEnabled = enabled;
         }
 
         private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             e.Handled = !_regex.IsMatch(e.Text);
+        }
+
+        private void ContentDialog_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ViewModel.ClearDataOnLoaded();
         }
     }
 }

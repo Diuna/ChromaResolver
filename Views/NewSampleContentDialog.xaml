@@ -11,6 +11,7 @@
                   IsPrimaryButtonEnabled="True"
                   PrimaryButtonText="Add"
                   PrimaryButtonIcon="{ui:SymbolIcon Add20}"
+                  Loaded="ContentDialog_Loaded"
                   Title="Add new sample">
 
 
