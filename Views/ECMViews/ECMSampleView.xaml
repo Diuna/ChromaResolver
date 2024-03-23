@@ -103,28 +103,28 @@
 
 
 
-                    <ui:TextBlock Text="{Binding Sample.FePercent}"
+                    <ui:TextBlock Text="{Binding Sample.Fe.PercentageValue,StringFormat=N2}"
                                   Grid.Column="0"
                                   Grid.Row="1"
                                   Opacity="0.8"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   FontSize="{StaticResource Global_NormalFontSize}" />
-                    <ui:TextBlock Text="{Binding Sample.CrPercent}"
+                    <ui:TextBlock Text="{Binding Sample.Cr.PercentageValue, StringFormat=N2}"
                                   Grid.Column="1"
                                   Grid.Row="1"
                                   Opacity="0.8"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   FontSize="{StaticResource Global_NormalFontSize}" />
-                    <ui:TextBlock Text="{Binding Sample.NiPercent}"
+                    <ui:TextBlock Text="{Binding Sample.Ni.PercentageValue, StringFormat=N2}"
                                   Grid.Column="2"
                                   Grid.Row="1"
                                   Opacity="0.8"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   FontSize="{StaticResource Global_NormalFontSize}" />
-                    <ui:TextBlock Text="{Binding Sample.CuPercent}"
+                    <ui:TextBlock Text="{Binding Sample.Cu.PercentageValue, StringFormat=N2}"
                                   Grid.Column="3"
                                   Grid.Row="1"
                                   Opacity="0.8"
@@ -169,7 +169,8 @@
                         <TextBlock Text="Ah"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0" />
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0" />
                         <ui:TextBox Grid.Column="1"
                                     Text="{Binding Sample.Ah}"
                                     PreviewTextInput="TextBox_PreviewTextInput"
@@ -185,7 +186,8 @@
                         <TextBlock Text="Wysokość od krawędzi"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0" />
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0" />
                         <ui:TextBox Grid.Column="1"
                                     Text="{Binding Sample.AboveHeight}"
                                     PreviewTextInput="TextBox_PreviewTextInput"
@@ -213,9 +215,10 @@
                         <TextBlock Text="Masa kąpieli"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0" />
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0" />
                         <ui:TextBox Grid.Column="1"
-                                    Text="{Binding Sample.BathMass_1}"
+                                    Text="{Binding Sample.StemResolver.Stem1.BathMass}"
                                     PreviewTextInput="TextBox_PreviewTextInput"
                                     VerticalAlignment="Center"
                                     Margin="5,0" />
@@ -229,9 +232,10 @@
                         <TextBlock Text="Masa próbki"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0" />
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0" />
                         <ui:TextBox Grid.Column="1"
-                                    Text="{Binding Sample.SampleMass_1}"
+                                    Text="{Binding Sample.StemResolver.Stem1.SampleMass}"
                                     PreviewTextInput="TextBox_PreviewTextInput"
                                     VerticalAlignment="Center"
                                     Margin="5,0" />
@@ -247,10 +251,11 @@
                         <TextBlock Text="Mnożnik 1:"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0"
                                    FontWeight="Bold" />
                         <TextBlock Grid.Column="1"
-                                   Text="{Binding Sample.Stem1}"
+                                   Text="{Binding Sample.StemResolver.Stem1.Value, StringFormat=N3}"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
@@ -295,19 +300,23 @@
                         <TextBlock Text="Masa kąpieli"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0" />
-                        <TextBlock Grid.Row="1" Text="Masa próbki"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0" />
+                        <TextBlock Grid.Row="1"
+                                   Text="Masa próbki"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0" />
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0" />
 
                         <ui:TextBox Grid.Column="1"
-                                    Text="{Binding Sample.BathMass_2}"
+                                    Text="{Binding Sample.StemResolver.Stem2.BathMass}"
                                     PreviewTextInput="TextBox_PreviewTextInput"
                                     VerticalAlignment="Center"
                                     Margin="5,0" />
-                        <ui:TextBox Grid.Column="1" Grid.Row="1"
-                                    Text="{Binding Sample.SampleMass_2}"
+                        <ui:TextBox Grid.Column="1"
+                                    Grid.Row="1"
+                                    Text="{Binding Sample.StemResolver.Stem2.SampleMass}"
                                     PreviewTextInput="TextBox_PreviewTextInput"
                                     VerticalAlignment="Center"
                                     Margin="5,0" />
@@ -320,10 +329,11 @@
                         <TextBlock Text="Mnożnik 2:"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0"
                                    FontWeight="Bold" />
                         <TextBlock Grid.Column="1"
-                                   Text="{Binding Sample.Stem2}"
+                                   Text="{Binding Sample.StemResolver.Stem2.Value, StringFormat=N3}"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
@@ -350,20 +360,22 @@
                         <TextBlock Text="Masa kąpieli"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0" />
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0" />
                         <TextBlock Grid.Row="1"
                                    Text="Masa próbki"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0" />
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0" />
                         <ui:TextBox Grid.Column="1"
-                                    Text="{Binding Sample.BathMass_3}"
+                                    Text="{Binding Sample.StemResolver.Stem3.BathMass}"
                                     PreviewTextInput="TextBox_PreviewTextInput"
                                     VerticalAlignment="Center"
                                     Margin="5,0" />
                         <ui:TextBox Grid.Column="1"
                                     Grid.Row="1"
-                                    Text="{Binding Sample.SampleMass_3}"
+                                    Text="{Binding Sample.StemResolver.Stem3.SampleMass}"
                                     PreviewTextInput="TextBox_PreviewTextInput"
                                     VerticalAlignment="Center"
                                     Margin="5,0" />
@@ -376,10 +388,11 @@
                         <TextBlock Text="Mnożnik 3:"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Left" Margin="10,0"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,0"
                                    FontWeight="Bold" />
                         <TextBlock Grid.Column="1"
-                                   Text="{Binding Sample.Stem3}"
+                                   Text="{Binding Sample.StemResolver.Stem3.Value, StringFormat=N3}"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
@@ -400,6 +413,163 @@
                         <SolidColorBrush Opacity="0.2"
                                          Color="{DynamicResource SystemAccentColorPrimary}" />
                     </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <ui:TextBlock Grid.Row="0"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      FontSize="{StaticResource Global_NormalFontSize}"
+                                      Margin="0,0,0,15"
+                                      Text="Fe" />
+                        <ui:TextBlock Grid.Row="1"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      FontSize="{StaticResource Global_NormalFontSize}"
+                                      Margin="0,0,0,15"
+                                      Text="Cr" />
+                        <ui:TextBlock Grid.Row="2"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      FontSize="{StaticResource Global_NormalFontSize}"
+                                      Margin="0,0,0,15"
+                                      Text="Ni" />
+                        <ui:TextBlock Grid.Row="3"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      FontSize="{StaticResource Global_NormalFontSize}"
+                                      Margin="0,0,0,15"
+                                      Text="Cu" />
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Row="0"
+                                          Grid.Column="0"
+                                          VerticalAlignment="Top"
+                                          ItemsSource="{Binding Sample.StemsItemSource}"
+                                          SelectedItem="{Binding Sample.Fe.Type, Mode=TwoWay}" />
+                                <ui:TextBox Grid.Column="1"
+                                            Grid.Row="0"
+                                            Text="{Binding Sample.Fe.IcpValue}"
+                                            PreviewTextInput="TextBox_PreviewTextInput"
+                                            VerticalAlignment="Top"
+                                            Margin="5,0" />
+                            </Grid>
+                            <ui:TextBlock Grid.Row="1"
+                                          HorizontalAlignment="Center"
+                                          Text="{Binding Sample.Fe.Value, StringFormat=N3}"
+                                          VerticalAlignment="Top" />
+                        </Grid>
+                        <Grid Grid.Row="1"
+                              Margin="0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Row="0"
+                                          Grid.Column="0"
+                                          VerticalAlignment="Top"
+                                          ItemsSource="{Binding Sample.StemsItemSource}"
+                                          SelectedItem="{Binding Sample.Cr.Type, Mode=TwoWay}" />
+                                <ui:TextBox Grid.Column="1"
+                                            Grid.Row="0"
+                                            Text="{Binding Sample.Cr.IcpValue}"
+                                            PreviewTextInput="TextBox_PreviewTextInput"
+                                            VerticalAlignment="Top"
+                                            Margin="5,0" />
+                            </Grid>
+                            <ui:TextBlock Grid.Row="1"
+                                          HorizontalAlignment="Center"
+                                          Text="{Binding Sample.Cr.Value, StringFormat=N3}"
+                                          VerticalAlignment="Top" />
+                        </Grid>
+                        <Grid Grid.Row="2"
+                              Margin="0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Row="0"
+                                          Grid.Column="0"
+                                          VerticalAlignment="Top"
+                                          ItemsSource="{Binding Sample.StemsItemSource}"
+                                          SelectedItem="{Binding Sample.Ni.Type, Mode=TwoWay}" />
+                                <ui:TextBox Grid.Column="1"
+                                            Grid.Row="0"
+                                            Text="{Binding Sample.Ni.IcpValue}"
+                                            PreviewTextInput="TextBox_PreviewTextInput"
+                                            VerticalAlignment="Top"
+                                            Margin="5,0" />
+                            </Grid>
+                            <ui:TextBlock Grid.Row="1"
+                                          HorizontalAlignment="Center"
+                                          Text="{Binding Sample.Ni.Value, StringFormat=N3}"
+                                          VerticalAlignment="Top" />
+                        </Grid>
+                        <Grid Grid.Row="3"
+                              Margin="0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Row="0"
+                                          Grid.Column="0"
+                                          VerticalAlignment="Top"
+                                          ItemsSource="{Binding Sample.StemsItemSource}"
+                                          SelectedItem="{Binding Sample.Cu.Type, Mode=TwoWay}"/>
+                                <ui:TextBox Grid.Column="1"
+                                            Grid.Row="0"
+                                            Text="{Binding Sample.Cu.IcpValue}"
+                                            PreviewTextInput="TextBox_PreviewTextInput"
+                                            VerticalAlignment="Top"
+                                            Margin="5,0" />
+                            </Grid>
+                            <ui:TextBlock Grid.Row="1"
+                                          HorizontalAlignment="Center"
+                                          Text="{Binding Sample.Cu.Value, StringFormat=N3}"
+                                          VerticalAlignment="Top" />
+                        </Grid>
+                    </Grid>
+                    
                 </Grid>
             </Grid>
         </Border>
