@@ -28,6 +28,27 @@ namespace ChromaResolver.Models.ECM
         public double aboveHeight;
 
         [ObservableProperty]
+        public string additionalInfo;
+
+        [ObservableProperty]
+        public double bathMass_1;
+
+        [ObservableProperty]
+        public double bathMass_2;
+
+        [ObservableProperty]
+        public double bathMass_3;
+
+        [ObservableProperty]
+        public double sampleMass_1;
+
+        [ObservableProperty]
+        public double sampleMass_2;
+
+        [ObservableProperty]
+        public double sampleMass_3;
+
+        [ObservableProperty]
         private double fePercent;
 
         [ObservableProperty]

@@ -148,11 +148,98 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" 
+                <Grid Grid.Column="0"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Ah"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                        <ui:TextBox Grid.Column="1"
+                                    Text="{Binding Sample.Ah}"
+                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Wysokość od krawędzi"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                        <ui:TextBox Grid.Column="1"
+                                    Text="{Binding Sample.AboveHeight}"
+                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0"/>
+                    </Grid>
+                    <ui:TextBox Grid.Row="2" PlaceholderText="Uwagi" 
+                                Text="{Binding Sample.AdditionalInfo}"
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                MaxLines="10"/>
+                    <TextBlock Grid.Row="3"
+                               Text="Rozcieńczenie próbki 1:100"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"
+                               FontSize="20" />
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Masa kąpieli"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                        <ui:TextBox Grid.Column="1"
+                                    Text="{Binding Sample.BathMass_1}"
+                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0"/>
+                        
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Masa próbki"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                        <ui:TextBox Grid.Column="1"
+                                    Text="{Binding Sample.SampleMass_1}"
+                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0"/>
+
+                    </Grid>
+                    
+
                     <Grid.Background>
-                        <SolidColorBrush Opacity="0.1" Color="{DynamicResource SystemAccentColorPrimary}" />
+                        <SolidColorBrush Opacity="0.1"
+                                         Color="{DynamicResource SystemAccentColorPrimary}" />
                     </Grid.Background>
                 </Grid>
                 <Grid Grid.Column="1"
@@ -186,7 +273,7 @@
                        Appearance="Primary"
                        Margin="10,10,5,10" />
             <ui:Button Grid.Column="1"
-                       HorizontalAlignment="Stretch" 
+                       HorizontalAlignment="Stretch"
                        Command="{Binding SaveCommand}"
                        Content="Cancel"
                        Appearance="Secondary"
