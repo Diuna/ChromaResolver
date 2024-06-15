@@ -4,6 +4,13 @@ using System.Collections.ObjectModel;
 
 namespace ChromaResolver.Models.ECM
 {
+    public class BaseSample
+    {
+        public string Name { get; set; }
+
+        public int Id { get; set; }
+    }
+
     public partial class Sample : ObservableObject
     {
 

@@ -21,6 +21,7 @@ namespace ChromaResolver
             IThemeService themeService)
         {
             ViewModel = viewModel;
+
             DataContext = this;
 
             Wpf.Ui.Appearance.SystemThemeWatcher.Watch(this);
@@ -35,7 +36,10 @@ namespace ChromaResolver
 
             NavigationView.SetServiceProvider(serviceProvider);
             Wpf.Ui.Appearance.ApplicationThemeManager.Apply(Wpf.Ui.Appearance.ApplicationTheme.Dark);
+
+            DataContext = ViewModel;
         }
+
         private bool _isUserClosedPane;
 
         private bool _isPaneOpenedOrClosedFromCode;

@@ -1,8 +1,8 @@
 ﻿using ChromaResolver.Views;
 using ChromaResolver.Views.ECMViews;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Wpf.Ui.Controls;
 
 namespace ChromaResolver.ViewModels
@@ -17,8 +17,8 @@ namespace ChromaResolver.ViewModels
 
         public MainWindowViewModel()
         {
-            menuItems = new ObservableCollection<object>();
-            footerItems = new ObservableCollection<object>();
+            menuItems = [];
+            footerItems = [];
             InitializeMenu();
         }
 
@@ -29,6 +29,26 @@ namespace ChromaResolver.ViewModels
             MenuItems.Add(new NavigationViewItem("LAB", SymbolRegular.Beaker20, typeof(LABView)));
             FooterItems.Add(new NavigationViewItemSeparator());
             FooterItems.Add(new NavigationViewItem("Settings", SymbolRegular.Settings20, typeof(SettingsView)));
+        }
+
+        [RelayCommand]
+        private void CornerClicked(string parameter)
+        {
+            switch (parameter)
+            {
+                case "Maximize":
+                    App.Current.MainWindow.WindowState = System.Windows.WindowState.Maximized;
+                    break;
+                case "Minimize":
+                    App.Current.MainWindow.WindowState = System.Windows.WindowState.Minimized;
+                    break;
+                case "Normalize":
+                    App.Current.MainWindow.WindowState = System.Windows.WindowState.Normal;
+                    break;
+                case "Close":
+                    App.Current.Shutdown();
+                    break;
+            }
         }
     }
 }
