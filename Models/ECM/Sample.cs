@@ -1,63 +1,91 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChromaResolver.Models.ECM
 {
-    public class BaseSample
-    {
-        public string Name { get; set; }
-
-        public int Id { get; set; }
-    }
-
+    [Table("ECM")]
     public partial class Sample : ObservableObject
     {
+        [Column("Guid")]
+        public Guid Guid { get; init; }
 
+        [Column("Name")]
         [ObservableProperty]
         public string name;
 
+        [Column("Id")]
         [ObservableProperty]
         public int id;
 
+        [NotMapped]
         [ObservableProperty]
         public int daysAgo;
 
+        [Column("Date")]
         [ObservableProperty]
         public DateOnly date;
 
+        [Column("Creator")]
         [ObservableProperty]
         public string creator;
 
+        [Column("Ah")]
         [ObservableProperty]
         public int ah;
 
+        [Column("AboveHeight")]
         [ObservableProperty]
         public double aboveHeight;
 
+        [Column("AdditionalInfo")]
         [ObservableProperty]
-        public string additionalInfo;
+        public string? additionalInfo;
 
+        [ForeignKey("Fe")]
+        [Column("Fe")]
+        public Guid FeElementId { get; set; }
+
+        [ForeignKey("Cr")]
+        [Column("Cr")]
+        public Guid CrElementId { get; set; }
+
+        [ForeignKey("Ni")]
+        [Column("Ni")]
+        public Guid NiElementId { get; set; }
+
+        [ForeignKey("Cu")]
+        [Column("Cu")]
+        public Guid CuElementId { get; set; }
+
+        [NotMapped]
         [ObservableProperty]
         private BaseElement fe;
 
+        [NotMapped]
         [ObservableProperty]
         private BaseElement cr;
 
+        [NotMapped]
         [ObservableProperty]
         private BaseElement ni;
 
+        [NotMapped]
         [ObservableProperty]
         private BaseElement cu;
 
+        [NotMapped]
         [ObservableProperty]
         ObservableCollection<EStemType> stemsItemSource;
 
+        [NotMapped]
         [ObservableProperty]
         private StemResolver stemResolver;
 
         public Sample(string name, int id, DateOnly date, string creator, int ah, double aboveHeight)
         {
+            Guid = Guid.NewGuid();
             Name = name;
             Id = id;
             Date = date;
@@ -89,27 +117,38 @@ namespace ChromaResolver.Models.ECM
         }
     }
 
+    [Table("ECMBase")]
     public partial class BaseElement : ObservableObject
     {
+        [NotMapped]
         private readonly StemResolver _stemResolver;
 
+        [Column("Guid")]
+        public Guid Guid { get; init; }
+
+        [Column("Type")]
         [ObservableProperty]
         private EStemType type;
 
+        [Column("Element")]
         [ObservableProperty]
         private EBaseElement element;
 
+        [Column("Value")]
         [ObservableProperty]
         private double value;
 
+        [NotMapped]
         [ObservableProperty]
         private double percentageValue;
 
+        [Column("IcpValue")]
         [ObservableProperty]
         private double icpValue;
 
         public BaseElement(StemResolver stemResolver, EBaseElement element)
         {
+            Guid = Guid.NewGuid();
             _stemResolver = stemResolver;
             Element = element;
             switch (Element)
@@ -129,6 +168,8 @@ namespace ChromaResolver.Models.ECM
             }
         }
 
+        public BaseElement() { }
+
         partial void OnTypeChanged(EStemType value)
         {
             OnIcpValueChanged(IcpValue);
@@ -145,6 +186,7 @@ namespace ChromaResolver.Models.ECM
         }
     }
 
+    [NotMapped]
     public partial class Stem : ObservableObject
     {
         [ObservableProperty]
@@ -180,7 +222,7 @@ namespace ChromaResolver.Models.ECM
         }
     }
 
-
+    [NotMapped]
     public partial class StemResolver : ObservableObject
     {
         [ObservableProperty]
@@ -201,17 +243,13 @@ namespace ChromaResolver.Models.ECM
 
         public double GetValue(EStemType type)
         {
-            switch (type)
+            return type switch
             {
-                case EStemType.Stem1:
-                    return Stem1.Value;
-                case EStemType.Stem2:
-                    return Stem2.Value;
-                case EStemType.Stem3:
-                    return Stem3.Value;
-                default:
-                    return 1;
-            }
+                EStemType.Stem1 => Stem1.Value,
+                EStemType.Stem2 => Stem2.Value,
+                EStemType.Stem3 => Stem3.Value,
+                _ => 1,
+            };
         }
     }
 

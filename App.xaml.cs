@@ -1,4 +1,5 @@
-﻿using ChromaResolver.Interfaces;
+﻿using ChromaResolver.Database;
+using ChromaResolver.Interfaces;
 using ChromaResolver.Services;
 using ChromaResolver.ViewModels;
 using ChromaResolver.ViewModels.ECMViewModels;
@@ -28,6 +29,8 @@ namespace ChromaResolver
 
             services.AddScoped<SettingsView>();
             services.AddScoped<SettingsViewModel>();
+
+            services.AddEntityFrameworkSqlite().AddDbContext<SampleContext>();
 
             services.AddScoped<NewSampleContentDialog>();
             services.AddScoped<NewSampleContentDialogViewModel>();
