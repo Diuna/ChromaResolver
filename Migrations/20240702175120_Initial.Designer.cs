@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChromaResolver.Migrations
 {
     [DbContext(typeof(SampleContext))]
-    [Migration("20240630182731_Initial")]
+    [Migration("20240702175120_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace ChromaResolver.Migrations
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasColumnName("Guid");
+                        .HasColumnName("guid");
 
                     b.Property<int>("Element")
                         .HasColumnType("INTEGER");
@@ -66,6 +66,9 @@ namespace ChromaResolver.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Cr");
 
+                    b.Property<Guid>("CrGuid")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Creator")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -73,6 +76,9 @@ namespace ChromaResolver.Migrations
                     b.Property<Guid>("CuElementId")
                         .HasColumnType("TEXT")
                         .HasColumnName("Cu");
+
+                    b.Property<Guid>("CuGuid")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("TEXT");
@@ -84,9 +90,12 @@ namespace ChromaResolver.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Fe");
 
+                    b.Property<Guid>("FeGuid")
+                        .HasColumnType("TEXT");
+
                     b.Property<Guid>("Guid")
                         .HasColumnType("TEXT")
-                        .HasColumnName("Guid");
+                        .HasColumnName("guid");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -96,19 +105,22 @@ namespace ChromaResolver.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Ni");
 
+                    b.Property<Guid>("NiGuid")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("StemsItemSource")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CrElementId");
+                    b.HasIndex("CrGuid");
 
-                    b.HasIndex("CuElementId");
+                    b.HasIndex("CuGuid");
 
-                    b.HasIndex("FeElementId");
+                    b.HasIndex("FeGuid");
 
-                    b.HasIndex("NiElementId");
+                    b.HasIndex("NiGuid");
 
                     b.ToTable("ECM");
                 });
@@ -117,25 +129,25 @@ namespace ChromaResolver.Migrations
                 {
                     b.HasOne("ChromaResolver.Models.ECM.BaseElement", "Cr")
                         .WithMany()
-                        .HasForeignKey("CrElementId")
+                        .HasForeignKey("CrGuid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ChromaResolver.Models.ECM.BaseElement", "Cu")
                         .WithMany()
-                        .HasForeignKey("CuElementId")
+                        .HasForeignKey("CuGuid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ChromaResolver.Models.ECM.BaseElement", "Fe")
                         .WithMany()
-                        .HasForeignKey("FeElementId")
+                        .HasForeignKey("FeGuid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ChromaResolver.Models.ECM.BaseElement", "Ni")
                         .WithMany()
-                        .HasForeignKey("NiElementId")
+                        .HasForeignKey("NiGuid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

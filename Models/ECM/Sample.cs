@@ -1,61 +1,72 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace ChromaResolver.Models.ECM
 {
     [Table("ECM")]
     public partial class Sample : ObservableObject
     {
-        [Column("Guid")]
+        [Column("guid")]
         public Guid Guid { get; init; }
 
-        [Column("Name")]
+        [Column("name")]
         [ObservableProperty]
         public string name;
 
-        [Column("Id")]
+        [Column("id")]
         [ObservableProperty]
         public int id;
 
-        [NotMapped]
-        [ObservableProperty]
-        public int daysAgo;
+        private int _daysAgo;
 
-        [Column("Date")]
+        [NotMapped]
+        public int DaysAgo
+        {
+            get => _daysAgo;
+            set
+            {
+                _daysAgo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [Column("date")]
         [ObservableProperty]
         public DateOnly date;
 
-        [Column("Creator")]
+        [Column("creator")]
         [ObservableProperty]
         public string creator;
 
-        [Column("Ah")]
+        [Column("ah")]
         [ObservableProperty]
         public int ah;
 
-        [Column("AboveHeight")]
+        [Column("above_height")]
         [ObservableProperty]
         public double aboveHeight;
 
-        [Column("AdditionalInfo")]
+        [Column("additional_info")]
         [ObservableProperty]
         public string? additionalInfo;
 
-        [ForeignKey("Fe")]
+        [ForeignKey("fe")]
         [Column("Fe")]
         public Guid FeElementId { get; set; }
 
-        [ForeignKey("Cr")]
+        [ForeignKey("cr")]
         [Column("Cr")]
         public Guid CrElementId { get; set; }
 
-        [ForeignKey("Ni")]
+        [ForeignKey("ni")]
         [Column("Ni")]
         public Guid NiElementId { get; set; }
 
-        [ForeignKey("Cu")]
+        [ForeignKey("cu")]
         [Column("Cu")]
         public Guid CuElementId { get; set; }
 
@@ -75,16 +86,75 @@ namespace ChromaResolver.Models.ECM
         [ObservableProperty]
         private BaseElement cu;
 
-        [NotMapped]
-        [ObservableProperty]
-        ObservableCollection<EStemType> stemsItemSource;
+        private ObservableCollection<EStemType> _stemsItemSource;
 
         [NotMapped]
-        [ObservableProperty]
-        private StemResolver stemResolver;
+        public ObservableCollection<EStemType> StemsItemSource
+        {
+            get => _stemsItemSource;
+            set
+            {
+                _stemsItemSource = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StemResolver _stemResolver;
+
+        [NotMapped]
+        public StemResolver StemResolver
+        {
+            get => _stemResolver;
+            set
+            {
+                _stemResolver = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Sample(Sample sample, BaseElement[] elements)
+        {
+            _stemResolver = new StemResolver();
+            Guid = sample.Guid;
+            Name = sample.Name;
+            Id = sample.Id;
+            Date = sample.Date;
+            Creator = sample.Creator;
+            Ah = sample.Ah;
+            AboveHeight = sample.AboveHeight;
+            Fe = elements.First(x => x.Element == EBaseElement.Fe);
+            Cr = elements.First(x => x.Element == EBaseElement.Cr);
+            Ni = elements.First(x => x.Element == EBaseElement.Ni);
+            Cu = elements.First(x => x.Element == EBaseElement.Cu);
+            Fe.SetStemResolver(_stemResolver);
+            Cr.SetStemResolver(_stemResolver);
+            Ni.SetStemResolver(_stemResolver);
+            Cu.SetStemResolver(_stemResolver);
+            FeElementId = Fe.Guid;
+            CrElementId = Cr.Guid;
+            CuElementId = Cu.Guid;
+            NiElementId = Ni.Guid;
+            Fe.NotifyChanged();
+            Cr.NotifyChanged();
+            Cu.NotifyChanged();
+            Ni.NotifyChanged();
+            StemsItemSource =
+            [
+                EStemType.Stem1,
+                EStemType.Stem2,
+                EStemType.Stem3
+            ];
+            var dateTime = date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
+            DaysAgo = (int)DateTime.UtcNow.Date.Subtract(dateTime).TotalDays;
+            if (DaysAgo < 0)
+            {
+                DaysAgo = 0;
+            }
+        }
 
         public Sample(string name, int id, DateOnly date, string creator, int ah, double aboveHeight)
         {
+            _stemResolver = new StemResolver();
             Guid = Guid.NewGuid();
             Name = name;
             Id = id;
@@ -92,17 +162,10 @@ namespace ChromaResolver.Models.ECM
             Creator = creator;
             Ah = ah;
             AboveHeight = aboveHeight;
-            StemsItemSource =
-            [
-                EStemType.Stem1,
-                EStemType.Stem2,
-                EStemType.Stem3
-            ];
-            StemResolver = new StemResolver();
-            Fe = new(StemResolver, EBaseElement.Fe);
-            Cr = new(StemResolver, EBaseElement.Cr);
-            Ni = new(StemResolver, EBaseElement.Ni);
-            Cu = new(StemResolver, EBaseElement.Cu);
+            Fe = new(_stemResolver, EBaseElement.Fe);
+            Cr = new(_stemResolver, EBaseElement.Cr);
+            Ni = new(_stemResolver, EBaseElement.Ni);
+            Cu = new(_stemResolver, EBaseElement.Cu);
             var dateTime = date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
             DaysAgo = (int)DateTime.UtcNow.Date.Subtract(dateTime).TotalDays;
             if (DaysAgo < 0)
@@ -118,31 +181,41 @@ namespace ChromaResolver.Models.ECM
     }
 
     [Table("ECMBase")]
-    public partial class BaseElement : ObservableObject
+    public partial class BaseElement : ObservableObject, INotifyPropertyChanged
     {
         [NotMapped]
-        private readonly StemResolver _stemResolver;
+        private StemResolver _stemResolver;
 
-        [Column("Guid")]
+        [Column("guid")]
         public Guid Guid { get; init; }
 
-        [Column("Type")]
+        [Column("type")]
         [ObservableProperty]
         private EStemType type;
 
-        [Column("Element")]
+        [Column("element")]
         [ObservableProperty]
         private EBaseElement element;
 
-        [Column("Value")]
+        [Column("value")]
         [ObservableProperty]
         private double value;
 
         [NotMapped]
-        [ObservableProperty]
-        private double percentageValue;
+        private double _percentageValue;
 
-        [Column("IcpValue")]
+        [NotMapped]
+        public double PercentageValue
+        {
+            get => _percentageValue;
+            set
+            {
+                _percentageValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [Column("icp_value")]
         [ObservableProperty]
         private double icpValue;
 
@@ -183,6 +256,16 @@ namespace ChromaResolver.Models.ECM
         partial void OnValueChanged(double value)
         {
             PercentageValue = value / 100;
+        }
+
+        public void NotifyChanged()
+        {
+            OnValueChanged(Value);
+        }
+
+        public void SetStemResolver(StemResolver stemResolver)
+        {
+            _stemResolver = stemResolver;
         }
     }
 

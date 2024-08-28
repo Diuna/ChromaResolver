@@ -24,8 +24,6 @@ namespace ChromaResolver.ViewModels.ECMViewModels
 
         private readonly NewSampleContentDialog _newSampleContent;
 
-        private readonly SampleContext _sampleContext;
-
         [ObservableProperty]
         public ObservableCollection<Sample> samples;
 
@@ -33,12 +31,10 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         private Sample selectedSample;
 
         public ECMSamplesViewModel(INavigationService navigationService,
-            SampleContext sampleContext,
             ECMSampleViewModel sampleViewModel,
             NewSampleContentDialog newSampleContentDialog)
         {
             Samples = [];
-            _sampleContext = sampleContext;
             _newSampleContent = newSampleContentDialog;
             _cancellationTokenSource = new();
             _navigationService = navigationService;
@@ -71,37 +67,36 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         private void LoadSamples()
         {
             using var client = new SampleContext();
-            client.Database.EnsureCreated();
+            //Mock(client);
             CollectData(client);
-            //Mock(client); 
         }
 
         private void CollectData(SampleContext client)
         {
             foreach (var sample in client.Samples)
             {
+                var elements = new List<BaseElement>();
                 var feResult = GetBaseElementByGuid(client.BaseElements, sample.FeElementId);
                 if (feResult.success)
                 {
-                    sample.Fe = feResult.element;
+                    elements.Add(feResult.element);
                 }
                 var crResult = GetBaseElementByGuid(client.BaseElements, sample.CrElementId);
                 if (crResult.success)
                 {
-                    sample.Cr = crResult.element;
+                    elements.Add(crResult.element);
                 }
                 var cuResult = GetBaseElementByGuid(client.BaseElements, sample.CuElementId);
                 if (cuResult.success)
                 {
-                    sample.Cu = cuResult.element;
+                    elements.Add(cuResult.element);
                 }
                 var niResult = GetBaseElementByGuid(client.BaseElements, sample.NiElementId);
                 if (niResult.success)
                 {
-                    sample.Ni = niResult.element;
+                    elements.Add(niResult.element);
                 }
-
-                Samples.Add(sample);
+                Samples.Add(new Sample(sample, [.. elements]));
             }
         }
 
@@ -128,21 +123,25 @@ namespace ChromaResolver.ViewModels.ECMViewModels
                 {
                     case EBaseElement.Fe:
                         sample.Fe = baseSample;
+                        baseSample.IcpValue = 1;
                         baseSample.Value = 11;
                         sample.FeElementId = baseSample.Guid;
                         break;
                     case EBaseElement.Cr:
                         sample.Cr = baseSample;
+                        baseSample.IcpValue = 2;
                         baseSample.Value = 22;
                         sample.CrElementId = baseSample.Guid;
                         break;
                     case EBaseElement.Ni:
                         sample.Ni = baseSample;
+                        baseSample.IcpValue = 3;
                         baseSample.Value = 33;
                         sample.NiElementId = baseSample.Guid;
                         break;
                     case EBaseElement.Cu:
                         sample.Cu = baseSample;
+                        baseSample.IcpValue = 4;
                         baseSample.Value = 44;
                         sample.CuElementId = baseSample.Guid;
                         break;
