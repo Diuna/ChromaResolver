@@ -15,7 +15,7 @@ Scientific project by <b>Magdalena Polerowicz</b>
 
 <div align="center">
     <a href="./">
-        <img src="./Assets/mainpageexample.jpg"/>
+        <img src="./ChromaResolver/Assets/mainpageexample.jpg"/>
     </a>
 </div>
 
@@ -23,7 +23,7 @@ Scientific project by <b>Magdalena Polerowicz</b>
 
 <div align="center">
     <a href="./">
-        <img src="./Assets/ecmexample2.jpg"/>
+        <img src="./ChromaResolver/Assets/ecmexample2.jpg"/>
     </a>
 </div>
 
@@ -31,7 +31,7 @@ Scientific project by <b>Magdalena Polerowicz</b>
 
 <div align="center">
     <a href="./">
-        <img src="./Assets/ecmexample1.jpg"/>
+        <img src="./ChromaResolver/Assets/ecmexample1.jpg"/>
     </a>
 </div>
 
