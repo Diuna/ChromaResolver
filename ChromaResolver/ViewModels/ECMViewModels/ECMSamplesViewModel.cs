@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Wpf.Ui;
+using Wpf.Ui.Extensions;
 
 namespace ChromaResolver.ViewModels.ECMViewModels
 {
@@ -22,6 +23,8 @@ namespace ChromaResolver.ViewModels.ECMViewModels
 
         private readonly INavigationService _navigationService;
 
+        private readonly ISnackbarService _snackbarService;
+
         private readonly NewSampleContentDialog _newSampleContent;
 
         [ObservableProperty]
@@ -31,10 +34,12 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         private Sample _selectedSample;
 
         public ECMSamplesViewModel(INavigationService navigationService,
+            ISnackbarService snackbarService,
             ECMSampleViewModel sampleViewModel,
             NewSampleContentDialog newSampleContentDialog)
         {
             Samples = [];
+            _snackbarService = snackbarService;
             _newSampleContent = newSampleContentDialog;
             _cancellationTokenSource = new();
             _navigationService = navigationService;
@@ -54,15 +59,44 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         {
             if (await _newSampleContent.ShowAsync() == Wpf.Ui.Controls.ContentDialogResult.Primary)
             {
-                Samples.Add(new Sample(
+                var sample = new Sample(
                     _newSampleContent.ViewModel.Name,
-                    Samples.Count,
+                    GetNextId(Samples),
                     _newSampleContent.ViewModel.DateStruct,
                     _newSampleContent.ViewModel.Creator,
                     (int)_newSampleContent.ViewModel.Ah,
-                    _newSampleContent.ViewModel.Height));
+                    _newSampleContent.ViewModel.Height);
+                Samples.Add(sample);
+
+                var success = true;
+                try
+                {
+                    using var context = new SampleContext();
+                    context.Samples.Add(sample);
+                    context.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    success = false;
+                }
+                finally
+                {
+                    if (success)
+                    {
+                        _snackbarService.Show("Success", $"New sample ({sample.Name}) has been successfully added", Wpf.Ui.Controls.ControlAppearance.Success);
+                    }
+                    else
+                    {
+                        _snackbarService.Show("Fail", $"Failed to add new sample ({sample.Name}).", Wpf.Ui.Controls.ControlAppearance.Danger);
+                    }
+                }
             }
-            var t = 0;
+
+        }
+
+        private int GetNextId(ObservableCollection<Sample> samples)
+        {
+            return samples.Max(x => x.Id) + 1;
         }
 
         private void LoadSamples()

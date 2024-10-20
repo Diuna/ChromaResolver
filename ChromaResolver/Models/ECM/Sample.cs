@@ -154,12 +154,7 @@ namespace ChromaResolver.Models.ECM
             Cr.NotifyChanged();
             Cu.NotifyChanged();
             Ni.NotifyChanged();
-            var dateTime = date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
-            DaysAgo = (int)DateTime.UtcNow.Date.Subtract(dateTime).TotalDays;
-            if (DaysAgo < 0)
-            {
-                DaysAgo = 0;
-            }
+            UpdateDateTime();
             InitializeItemSource();
         }
 
@@ -182,12 +177,7 @@ namespace ChromaResolver.Models.ECM
             CrElementId = Cr.Guid;
             CuElementId = Cu.Guid;
             NiElementId = Ni.Guid;
-            var dateTime = date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
-            DaysAgo = (int)DateTime.UtcNow.Date.Subtract(dateTime).TotalDays;
-            if (DaysAgo < 0)
-            {
-                DaysAgo = 0;
-            }
+            UpdateDateTime();
             InitializeItemSource();
         }
 
@@ -201,6 +191,16 @@ namespace ChromaResolver.Models.ECM
             Stem1 = _stemResolver.Stem1.Value;
             Stem2 = _stemResolver.Stem2.Value;
             Stem3 = _stemResolver.Stem3.Value;
+        }
+
+        private void UpdateDateTime()
+        {
+            var dateTime = Date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
+            DaysAgo = (int)DateTime.UtcNow.Date.Subtract(dateTime).TotalDays;
+            if (DaysAgo < 0)
+            {
+                DaysAgo = 0;
+            }
         }
 
         private void InitializeItemSource()

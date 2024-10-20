@@ -64,7 +64,8 @@
                           VerticalAlignment="Top" />
 
         <ui:SnackbarPresenter x:Name="RootSnackbar"
-                              MaxWidth="600" />
+                              MaxWidth="600"
+                              VerticalAlignment="Top"/>
         <ContentPresenter x:Name="RootContentDialogPresenter" />
         <ui:SymbolIcon Symbol="GridDots20"
                        HorizontalAlignment="Right"
