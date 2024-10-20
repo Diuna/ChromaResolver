@@ -21,6 +21,7 @@ namespace ChromaResolver.Models.ECM
         [ObservableProperty]
         public int id;
 
+        [NotMapped]
         private int _daysAgo;
 
         [NotMapped]
@@ -56,15 +57,15 @@ namespace ChromaResolver.Models.ECM
 
         [Column("stem1")]
         [ObservableProperty]
-        public int stem1;
+        public double stem1;
 
         [Column("stem2")]
         [ObservableProperty]
-        public int stem2;
+        public double stem2;
 
         [Column("stem3")]
         [ObservableProperty]
-        public int stem3;
+        public double stem3;
 
         [ForeignKey("fe")]
         [Column("Fe")]
@@ -146,9 +147,9 @@ namespace ChromaResolver.Models.ECM
             CrElementId = Cr.Guid;
             CuElementId = Cu.Guid;
             NiElementId = Ni.Guid;
-            _stemResolver.Stem1.Value = Stem1;
-            _stemResolver.Stem2.Value = Stem2;
-            _stemResolver.Stem3.Value = Stem3;
+            _stemResolver.Stem1.Value = sample.Stem1;
+            _stemResolver.Stem2.Value = sample.Stem2;
+            _stemResolver.Stem3.Value = sample.Stem3;
             Fe.NotifyChanged();
             Cr.NotifyChanged();
             Cu.NotifyChanged();
@@ -193,6 +194,13 @@ namespace ChromaResolver.Models.ECM
         public Sample()
         {
             InitializeItemSource();
+        }
+
+        public void UpdateStems()
+        {
+            Stem1 = _stemResolver.Stem1.Value;
+            Stem2 = _stemResolver.Stem2.Value;
+            Stem3 = _stemResolver.Stem3.Value;
         }
 
         private void InitializeItemSource()

@@ -43,8 +43,10 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         private void Save()
         {
             using var context = new SampleContext();
+
             if (Sample != null)
             {
+                Sample.UpdateStems();
                 var toRemove = context.Samples.FirstOrDefault(x => x.Guid == Sample.Guid);
                 if (toRemove != null)
                 {
