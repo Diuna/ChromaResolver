@@ -54,6 +54,18 @@ namespace ChromaResolver.Models.ECM
         [ObservableProperty]
         public string? additionalInfo;
 
+        [Column("stem1")]
+        [ObservableProperty]
+        public int stem1;
+
+        [Column("stem2")]
+        [ObservableProperty]
+        public int stem2;
+
+        [Column("stem3")]
+        [ObservableProperty]
+        public int stem3;
+
         [ForeignKey("fe")]
         [Column("Fe")]
         public Guid FeElementId { get; set; }
@@ -134,22 +146,20 @@ namespace ChromaResolver.Models.ECM
             CrElementId = Cr.Guid;
             CuElementId = Cu.Guid;
             NiElementId = Ni.Guid;
+            _stemResolver.Stem1.Value = Stem1;
+            _stemResolver.Stem2.Value = Stem2;
+            _stemResolver.Stem3.Value = Stem3;
             Fe.NotifyChanged();
             Cr.NotifyChanged();
             Cu.NotifyChanged();
             Ni.NotifyChanged();
-            StemsItemSource =
-            [
-                EStemType.Stem1,
-                EStemType.Stem2,
-                EStemType.Stem3
-            ];
             var dateTime = date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
             DaysAgo = (int)DateTime.UtcNow.Date.Subtract(dateTime).TotalDays;
             if (DaysAgo < 0)
             {
                 DaysAgo = 0;
             }
+            InitializeItemSource();
         }
 
         public Sample(string name, int id, DateOnly date, string creator, int ah, double aboveHeight)
@@ -166,17 +176,33 @@ namespace ChromaResolver.Models.ECM
             Cr = new(_stemResolver, EBaseElement.Cr);
             Ni = new(_stemResolver, EBaseElement.Ni);
             Cu = new(_stemResolver, EBaseElement.Cu);
+
+            FeElementId = Fe.Guid;
+            CrElementId = Cr.Guid;
+            CuElementId = Cu.Guid;
+            NiElementId = Ni.Guid;
             var dateTime = date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
             DaysAgo = (int)DateTime.UtcNow.Date.Subtract(dateTime).TotalDays;
             if (DaysAgo < 0)
             {
                 DaysAgo = 0;
             }
+            InitializeItemSource();
         }
 
         public Sample()
         {
+            InitializeItemSource();
+        }
 
+        private void InitializeItemSource()
+        {
+            StemsItemSource =
+            [
+                EStemType.Stem1,
+                EStemType.Stem2,
+                EStemType.Stem3
+            ];
         }
     }
 

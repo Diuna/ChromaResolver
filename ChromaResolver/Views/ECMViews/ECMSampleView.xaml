@@ -586,7 +586,7 @@
                        Margin="10,10,5,10" />
             <ui:Button Grid.Column="1"
                        HorizontalAlignment="Stretch"
-                       Command="{Binding SaveCommand}"
+                       Command="{Binding CancelCommand}"
                        Content="Cancel"
                        Appearance="Secondary"
                        Margin="5,10,10,10" />

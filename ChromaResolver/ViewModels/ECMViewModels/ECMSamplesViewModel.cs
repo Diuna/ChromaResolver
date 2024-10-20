@@ -25,10 +25,10 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         private readonly NewSampleContentDialog _newSampleContent;
 
         [ObservableProperty]
-        public ObservableCollection<Sample> samples;
+        private ObservableCollection<Sample> _samples;
 
         [ObservableProperty]
-        private Sample selectedSample;
+        private Sample _selectedSample;
 
         public ECMSamplesViewModel(INavigationService navigationService,
             ECMSampleViewModel sampleViewModel,
@@ -62,6 +62,7 @@ namespace ChromaResolver.ViewModels.ECMViewModels
                     (int)_newSampleContent.ViewModel.Ah,
                     _newSampleContent.ViewModel.Height));
             }
+            var t = 0;
         }
 
         private void LoadSamples()

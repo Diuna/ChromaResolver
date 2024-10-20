@@ -13,7 +13,7 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         private readonly INavigationService _navigationService;
 
         [ObservableProperty]
-        public Sample sample;
+        private Sample? _sample;
 
         public ECMSampleViewModel(INavigationService navigationService)
         {
@@ -33,14 +33,27 @@ namespace ChromaResolver.ViewModels.ECMViewModels
         }
 
         [RelayCommand]
+        private void Cancel()
+        {
+            Sample = null;
+            _navigationService.Navigate(typeof(ECMSamplesView));
+        }
+
+        [RelayCommand]
         private void Save()
         {
             using var context = new SampleContext();
-            var toRemove = context.Samples.First(x => x.Guid == Sample.Guid);
-            context.Samples.Remove(toRemove);
-            context.SaveChanges();
-            context.Samples.Add(Sample);
-            context.SaveChanges();
+            if (Sample != null)
+            {
+                var toRemove = context.Samples.FirstOrDefault(x => x.Guid == Sample.Guid);
+                if (toRemove != null)
+                {
+                    context.Samples.Remove(toRemove);
+                    context.SaveChanges();
+                }
+                context.Samples.Add(Sample);
+                context.SaveChanges();
+            }
             _navigationService.Navigate(typeof(ECMSamplesView));
         }
     }
