@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChromaResolver", "ChromaResolver.csproj", "{A8F4CFD3-7426-43F1-8E05-4F7EB15781D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plexonalizator", "..\Plexonalizator\Plexonalizator.csproj", "{5D8695BF-0BC8-4EA7-B1C6-9D4FD4E36044}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A8F4CFD3-7426-43F1-8E05-4F7EB15781D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8F4CFD3-7426-43F1-8E05-4F7EB15781D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8F4CFD3-7426-43F1-8E05-4F7EB15781D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D8695BF-0BC8-4EA7-B1C6-9D4FD4E36044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8695BF-0BC8-4EA7-B1C6-9D4FD4E36044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8695BF-0BC8-4EA7-B1C6-9D4FD4E36044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8695BF-0BC8-4EA7-B1C6-9D4FD4E36044}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
